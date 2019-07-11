@@ -1,0 +1,64 @@
+{
+    "name": "appweb",
+    "description": "Embedthis Appweb Community Edition",
+    "title": "Embedthis Appweb Community Edition",
+    "version": "7.1.1",
+    "keywords": [
+        "appweb",
+        "http",
+        "webserver"
+    ],
+    "homepage": "https://www.embedthis.com/appweb/",
+    "author": {
+        "name": "Embedthis Software",
+        "email": "dev@embedthis.com",
+        "url": "https://www.embedthis.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/embedthis/appweb.git"
+    },
+    "bugs": {
+        "email": "dev@embedthis.com",
+        "url": "http://github.com/embedthis/appweb/issues"
+    },
+    "licenses": [
+        {
+            "type": "GPL",
+            "url": "http://www.gnu.org/licenses/gpl-2.0.html"
+        },
+        {
+            "type": "Commercial",
+            "url": "https://www.embedthis.com/licensing/"
+        }
+    ],
+    "dependencies": {
+        "assist": "~0.1",
+        "http": "~7",
+        "makerom": "~0.3",
+        "mpr": "~8",
+        "osdep": "~1",
+        "pcre": "~1.0",
+        "ssl": "~0.9",
+        "watchdog": "~0.3"
+    },
+    "optionalDependencies": {
+        "appweb-ejscript": "~0.2",
+        "appweb-php": "~0.2",
+        "certs": "~0.1",
+        "ejscript": "~2.7",
+        "esp": "~7",
+        "mpr-mbedtls": "~2",
+        "mpr-openssl": "~1",
+        "sqlite": "~3"
+    },
+    "devDependencies": {
+        "makeme": ">=1.0",
+        "pak": ">=1.0"
+    },
+    "files": [
+        "dist/",
+        "doc/api/"
+    ],
+    "import": true
+}

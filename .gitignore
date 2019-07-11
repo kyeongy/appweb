@@ -1,7 +1,6 @@
 *.cgi
 test/web/huge.txt
 test/web/tmp/
-src/server/cache/
 test/app/
 test/cache/
 test/cgi-bin/*cgi*
@@ -13,6 +12,11 @@ test/future.json
 test/test.dat
 samples/certs
 test/tmp/test.dat
+test/tmp/*
 src/server/certs
 .port.log
 *.guid
+test/exploits/
+/cache/
+/build
+/start.me

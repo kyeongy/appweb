@@ -1,0 +1,15 @@
+{
+    "name": "appweb-doc",
+    "title": "Appweb Documentation",
+    "dependencies": {
+        "me-docstyle": "~0.9"
+    },
+    "devDependencies": {
+        "expansive": ">=0.6.0"
+    },
+    "directories": {
+        "export": "contents/lib"
+    },
+    "import": true,
+    "profile": "debug"
+}

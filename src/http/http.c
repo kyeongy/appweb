@@ -725,7 +725,7 @@ static void threadMain(void *data, MprThread *tp)
         httpSetCredentials(conn, app->username, app->password, app->authType);
     }
     for (count = 0; count < app->iterations; count++) {
-        if (mprShouldDenyNewRequests(conn)) {
+        if (mprShouldDenyNewRequests()) {
             break;
         }
         if (!app->success && !app->continueOnErrors) {
@@ -844,7 +844,7 @@ static int issueRequest(HttpConn *conn, cchar *url, MprList *files)
     httpSetTimeout(conn, app->timeout, app->timeout);
     authType = conn->authType;
 
-    for (redirectCount = count = 0; count <= conn->retries && redirectCount < 10 && !mprShouldAbortRequests(conn); count++) {
+    for (redirectCount = count = 0; count <= conn->retries && redirectCount < 10 && !mprShouldAbortRequests(); count++) {
         if (prepRequest(conn, files, count) < 0) {
             return MPR_ERR_CANT_OPEN;
         }
@@ -911,7 +911,7 @@ static int reportResponse(HttpConn *conn, cchar *url)
     char        *responseHeaders;
     int         status;
 
-    if (mprShouldAbortRequests(conn)) {
+    if (mprShouldAbortRequests()) {
         return 0;
     }
     app->status = status = httpGetStatus(conn);
@@ -1242,8 +1242,10 @@ static cchar *formatOutput(HttpConn *conn, cchar *buf, ssize *count)
 
 static void trace(HttpConn *conn, cchar *url, int fetchCount, cchar *method, int status, MprOff contentLen)
 {
-    if (sncaselesscmp(url, "http://", 7) != 0) {
+    if (sncaselesscmp(url, "http://", 7) == 0) {
         url += 7;
+    } else if (sncaselesscmp(url, "https://", 8) == 0) {
+        url += 8;
     }
     if ((fetchCount % 200) == 1) {
         if (fetchCount == 1 || (fetchCount % 5000) == 1) {
@@ -1253,7 +1255,7 @@ static void trace(HttpConn *conn, cchar *url, int fetchCount, cchar *method, int
             mprPrintf("  Count  Thread   Op  Code   Bytes  Url\n");
         }
         mprPrintf("%7d %7s %4s %5d %7d  %s\n", fetchCount - 1,
-            mprGetCurrentThreadName(conn), method, status, (uchar) contentLen, url);
+            mprGetCurrentThreadName(), method, status, (uchar) contentLen, url);
     }
 }
 
